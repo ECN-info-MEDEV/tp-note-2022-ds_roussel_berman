@@ -47,14 +47,20 @@ public class Plateau {
      */
     public boolean insererPion(Joueur joueur, int colonne) {
         boolean res = true;
-        if (this.grille[0][colonne] != null){
-            res = false; // la colonne est déjà pleine
+        if(colonne < 0 || colonne > 6){
+            res = false;
         }
         else{
-            int ligne = quelleLigne(colonne);
-            this.grille[ligne][colonne] = new Pion(joueur.isIsYellow());
-            joueur.setNbPion(joueur.getNbPion() - 1);
+            if (this.grille[0][colonne] != null){
+                res = false; // la colonne est déjà pleine
         }
+            else{
+                int ligne = quelleLigne(colonne);
+                this.grille[ligne][colonne] = new Pion(joueur.isIsYellow());
+                joueur.setNbPion(joueur.getNbPion() - 1);
+            }
+        }
+        
         return res;
     }
     

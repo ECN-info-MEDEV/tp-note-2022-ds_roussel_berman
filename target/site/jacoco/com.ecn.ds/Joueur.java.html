@@ -13,55 +13,159 @@ import java.util.Scanner;
 public class Joueur {
     private int nbPion;
     private boolean isYellow;
-    private Scanner scanner; 
-<span class="nc" id="L17">    private static String entree=&quot;[ENTRÉE]&quot;;</span>
+    private String nom;
+    private Scanner scanner;
+    
     /**
      * constructeur du joueur
      * @param isYellow couleur de son pion
      */
-<span class="nc" id="L22">    public Joueur(boolean isYellow) {</span>
-<span class="nc" id="L23">        this.nbPion = 21;</span>
-<span class="nc" id="L24">        this.isYellow = isYellow;</span>
-<span class="nc" id="L25">    }</span>
+<span class="fc" id="L23">    public Joueur(boolean isYellow) {</span>
+<span class="fc" id="L24">        this.nbPion = 21;</span>
+<span class="fc" id="L25">        this.isYellow = isYellow;</span>
+<span class="fc" id="L26">    }</span>
     /**
      * Permet de faire jouer le joueur sur le plateau de jeu
      * @param plateau plateau commun aux deux jours
      */
     public void jouer(Plateau plateau) {
-<span class="nc" id="L31">        scanner = new Scanner(System.in);</span>
+<span class="nc" id="L32">        scanner = new Scanner(System.in);</span>
 
         int colonne;
 
-<span class="nc" id="L35">        boolean colonneAccepted = false;</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        while(!colonneAccepted){</span>
-<span class="nc" id="L37">            System.out.println(entree  + &quot; Dans quelle colonne souhaites-tu mettre ton pion ?  :&quot;);</span>
-<span class="nc" id="L38">            colonne = scanner.nextInt();</span>
-<span class="nc" id="L39">            colonneAccepted = plateau.insererPion(isYellow, colonne); // si vrai, le pion a été placé</span>
+<span class="nc" id="L36">        boolean colonneAccepted = false;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        while(!colonneAccepted){</span>
+<span class="nc" id="L38">            System.out.println(&quot;Dans quelle colonne souhaites-tu mettre ton pion ?  :&quot;);</span>
+<span class="nc" id="L39">            colonne = scanner.nextInt();</span>
+<span class="nc" id="L40">            colonne = colonne - 1; // décalage de 1.</span>
+<span class="nc" id="L41">            colonneAccepted = plateau.insererPion(this, colonne); // si vrai, le pion a été placé</span>
         }
-<span class="nc" id="L41">    }</span>
+<span class="nc" id="L43">    }</span>
     
-     public boolean verifierGagnant(Plateau plateau) {
+    /**
+     * Vérifie si le Puissance 4 est gagné à partir d'un objet de type Plateau
+     * @param plateau
+     * @return true s'il y a un gagnant, false sinon
+     */
+    public boolean verifierGagnant(Plateau plateau) {
+        Pion[][] grille;
+<span class="nc" id="L52">        grille = plateau.getGrille();</span>
         
-<span class="nc" id="L45">        return true;</span>
+        // Vérifie si une série de 4 pions de la même couleur sont alignés horizontalement
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc" id="L56">            int count = 1;</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if(grille[i][0] == null)</span>
+<span class="nc" id="L58">                continue;</span>
+<span class="nc" id="L59">            boolean color = grille[i][0].isYellow();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            for (int j = 1; j &lt; 7; j++) {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                if(grille[i][j] == null)</span>
+<span class="nc" id="L62">                    continue;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if(color == grille[i][j].isYellow())</span>
+<span class="nc" id="L64">                    count += 1;</span>
+                else {
+<span class="nc" id="L66">                    count = 0;</span>
+<span class="nc" id="L67">                    color = grille[i][j].isYellow();</span>
+                }
+                
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                if(count == 4)</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">                    return (this.isYellow == color);</span>
+            }
+        }
+        
+        // Vérifie si une série de 4 pions de la même couleur sont alignés verticalement
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (int j = 0; j &lt; 7; j++) {</span>
+<span class="nc" id="L77">            int count = 1;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if(grille[0][j] == null)</span>
+<span class="nc" id="L79">                continue;</span>
+<span class="nc" id="L80">            boolean color = grille[0][j].isYellow();</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            for (var i = 1; i &lt; 6; i++) {</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">                if(grille[i][j] == null)</span>
+<span class="nc" id="L83">                    continue;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">                if(color == grille[i][j].isYellow())</span>
+<span class="nc" id="L85">                    count += 1;</span>
+                else {
+<span class="nc" id="L87">                    count = 0;</span>
+<span class="nc" id="L88">                    color = grille[i][j].isYellow();</span>
+                }
+                
+<span class="nc bnc" id="L91" title="All 2 branches missed.">                if(count == 4)</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                    return (this.isYellow == color);</span>
+            }
+        }
+        
+        // Vérifie si une série de 4 pions de la même couleur sont alignés diagonalement
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        for(int i = 3; i &lt; 6; i++) {</span>
+<span class="nc" id="L98">            int j = 0;</span>
+<span class="nc" id="L99">            int count = 1;</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if(grille[i][j] == null)</span>
+<span class="nc" id="L101">                continue;</span>
+<span class="nc" id="L102">            boolean color = grille[i][j].isYellow();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            for(var k = i; k &gt;= 0; k--) {</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                if(grille[k][j] == null)</span>
+<span class="nc" id="L105">                    continue;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">                if(color == grille[k][j].isYellow())</span>
+<span class="nc" id="L107">                    count += 1;</span>
+                else {
+<span class="nc" id="L109">                    count = 0;</span>
+<span class="nc" id="L110">                    color = grille[k][j].isYellow();</span>
+                }
+                
+<span class="nc bnc" id="L113" title="All 2 branches missed.">                if(count == 4)</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">                    return (this.isYellow == color);</span>
+                
+<span class="nc" id="L116">                j++;</span>
+            }
+            
+        }
+        
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        for(int i = 2; i &gt;= 0; i--) {</span>
+<span class="nc" id="L122">            int j = 6;</span>
+<span class="nc" id="L123">            int count = 1;</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if(grille[i][j] == null)</span>
+<span class="nc" id="L125">                continue;</span>
+<span class="nc" id="L126">            boolean color = grille[i][j].isYellow();</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            for(var k = i; k &lt; 6; k++) {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                if(grille[k][j] == null)</span>
+<span class="nc" id="L129">                    continue;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                if(color == grille[k][j].isYellow())</span>
+<span class="nc" id="L131">                    count += 1;</span>
+                else {
+<span class="nc" id="L133">                    count = 0;</span>
+<span class="nc" id="L134">                    color = grille[k][j].isYellow();</span>
+                }
+                
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                if(count == 4)</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">                    return (this.isYellow == color);</span>
+<span class="nc" id="L139">                j--;</span>
+            }
+        }
+        
+<span class="nc" id="L143">        return false;</span>
     }
 
     public int getNbPion() {
-<span class="nc" id="L49">        return nbPion;</span>
+<span class="fc" id="L147">        return nbPion;</span>
     }
 
     public void setNbPion(int nbPion) {
-<span class="nc" id="L53">        this.nbPion = nbPion;</span>
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L151">        this.nbPion = nbPion;</span>
+<span class="fc" id="L152">    }</span>
 
     public boolean isIsYellow() {
-<span class="nc" id="L57">        return isYellow;</span>
+<span class="fc" id="L155">        return isYellow;</span>
     }
 
     public void setIsYellow(boolean isYellow) {
-<span class="nc" id="L61">        this.isYellow = isYellow;</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L159">        this.isYellow = isYellow;</span>
+<span class="nc" id="L160">    }</span>
 
+    public void setNom(String nom) {
+<span class="nc" id="L163">        this.nom = nom;</span>
+<span class="nc" id="L164">    }</span>
 
+    public String getNom() {
+<span class="nc" id="L167">        return nom;</span>
+    }
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

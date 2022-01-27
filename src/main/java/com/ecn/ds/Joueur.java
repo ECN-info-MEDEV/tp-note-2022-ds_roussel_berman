@@ -39,6 +39,9 @@ public class Joueur {
             colonne = scanner.nextInt();
             colonne = colonne - 1; // décalage de 1.
             colonneAccepted = plateau.insererPion(this, colonne); // si vrai, le pion a été placé
+            if(!colonneAccepted){
+                System.out.println("La colonne que tu as choisis n'est pas disponible ... ");
+            }
         }
     }
     

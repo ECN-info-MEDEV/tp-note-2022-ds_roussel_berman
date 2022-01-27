@@ -25,7 +25,7 @@ public class Main {
         Joueur joueur2 = new Joueur(false);
         System.out.println("[ENTRÉE]" + " Tapez votre pseudo :");
         nomJoueur = scanner.next();
-        joueur1.setNom(nomJoueur);
+        joueur2.setNom(nomJoueur);
         
         int n=0;
         boolean fini = false;
@@ -51,7 +51,8 @@ public class Main {
                 n=0;
                 if (joueur2.verifierGagnant(grille)){
                     fini = joueur2.verifierGagnant(grille);
-                    System.out.println("[FIN DE LA PARTIE] Bravo " + joueur1.getNom() + ", tu as gagné ! ");
+                    grille.affichePlateau();
+                    System.out.println("[FIN DE LA PARTIE] Bravo " + joueur2.getNom() + ", tu as gagné ! ");
                 }
                 else{
                     if(joueur2.getNbPion() == 0){

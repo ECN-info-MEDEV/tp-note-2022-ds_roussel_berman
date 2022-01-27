@@ -11,20 +11,33 @@ package com.ecn.ds;
 public class Plateau {
     private Pion[][] grille;
     
-<span class="fc" id="L14">    public Plateau() {</span>
-<span class="fc" id="L15">        this.grille = new Pion[6][7];</span>
-<span class="fc" id="L16">    }</span>
+    // Codes couleur pour l'affichage console
+    public static final String ANSI_RESET = &quot;\u001B[0m&quot;;
+    public static final String ANSI_BLACK = &quot;\u001B[30m&quot;;
+    public static final String ANSI_RED = &quot;\u001B[31m&quot;;
+    public static final String ANSI_GREEN = &quot;\u001B[32m&quot;;
+    public static final String ANSI_YELLOW = &quot;\u001B[33m&quot;;
+    public static final String ANSI_BLUE = &quot;\u001B[34m&quot;;
+    public static final String ANSI_PURPLE = &quot;\u001B[35m&quot;;
+    public static final String ANSI_CYAN = &quot;\u001B[36m&quot;;
+    public static final String ANSI_WHITE = &quot;\u001B[37m&quot;;
+    
+<span class="fc" id="L25">    public Plateau() {</span>
+<span class="fc" id="L26">        this.grille = new Pion[6][7];</span>
+<span class="fc" id="L27">    }</span>
     /**
-     * Permet de savoir à quelle ligne tombe le pion
+     * Permet de savoir à quelle ligne tombe le pion. Mis en public pour pouvoir faire les tests
      * @param colonne colonne demanée
      * @return 
      */
-    private int quelleLigne(int colonne){
-<span class="nc" id="L23">        int ligne = 0;</span>
-<span class="nc bnc" id="L24" title="All 4 branches missed.">        while( (ligne &lt; 6) &amp;&amp; (this.grille[ligne][colonne] == null)){</span>
-<span class="nc" id="L25">            ligne += 1;</span>
+    public int quelleLigne(int colonne){
+<span class="fc" id="L34">        int ligne = 5;</span>
+        
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        while(this.grille[ligne][colonne] != null){</span>
+<span class="fc" id="L37">            ligne = ligne - 1;</span>
         }
-<span class="nc" id="L27">        return ligne;</span>
+        
+<span class="fc" id="L40">        return ligne;</span>
     }
     /**
      * Permet d'insérer le pion s'il est possible de le faire. si c'est impossible, la fonction retourne false
@@ -32,30 +45,49 @@ public class Plateau {
      * @param colonne colonne demandée
      * @return 
      */
-    public boolean insererPion(boolean isYellow, int colonne) {
-<span class="nc" id="L36">        boolean res = true;</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (this.grille[0][colonne] != null){</span>
-<span class="nc" id="L38">            res = false; // la colonne est déjà pleine</span>
+    public boolean insererPion(Joueur joueur, int colonne) {
+<span class="fc" id="L49">        boolean res = true;</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (this.grille[0][colonne] != null){</span>
+<span class="nc" id="L51">            res = false; // la colonne est déjà pleine</span>
         }
         else{
-<span class="nc" id="L41">            int ligne = quelleLigne(colonne);</span>
-<span class="nc" id="L42">            this.grille[ligne][colonne] = new Pion(isYellow);</span>
+<span class="fc" id="L54">            int ligne = quelleLigne(colonne);</span>
+<span class="fc" id="L55">            this.grille[ligne][colonne] = new Pion(joueur.isIsYellow());</span>
+<span class="fc" id="L56">            joueur.setNbPion(joueur.getNbPion() - 1);</span>
         }
-<span class="nc" id="L44">        return res;</span>
+<span class="fc" id="L58">        return res;</span>
     }
     
     public void affichePlateau() {
-<span class="nc" id="L48">        System.out.println(&quot;affichage du plateau à faire&quot;);</span>
-<span class="nc" id="L49">    }</span>
+        StringBuilder bld;
+        String line;
+        
+<span class="nc" id="L65">        System.out.println(&quot; C 1 2 3 4 5 6 7&quot;);</span>
+<span class="nc" id="L66">        System.out.println(&quot;L ===============&quot;);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        for(int i = 0; i &lt; 6; i++) {</span>
+<span class="nc" id="L68">            bld = new StringBuilder();</span>
+<span class="nc" id="L69">            bld.append(i+1).append(&quot; |&quot;);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            for(int j = 0; j &lt; 7; j++) {</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">                if(this.grille[i][j] == null)</span>
+<span class="nc" id="L72">                    bld.append(&quot; |&quot;);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                else if(this.grille[i][j].isYellow())</span>
+<span class="nc" id="L74">                    bld.append(ANSI_YELLOW + &quot;○&quot; + ANSI_RESET + &quot;|&quot;);</span>
+                else {
+<span class="nc" id="L76">                    bld.append(ANSI_RED + &quot;•&quot; + ANSI_RESET + &quot;|&quot;);</span>
+                }
+            }
+<span class="nc" id="L79">            line = bld.toString();</span>
+<span class="nc" id="L80">            System.out.println(line);</span>
+        }
+<span class="nc" id="L82">        System.out.println(&quot;  ===============&quot;);</span>
+<span class="nc" id="L83">    }</span>
 
     public Pion[][] getGrille() {
-<span class="nc" id="L52">        return grille;</span>
+<span class="nc" id="L86">        return grille;</span>
     }
 
     public void setGrille(Pion[][] grille) {
-<span class="nc" id="L56">        this.grille = grille;</span>
-<span class="nc" id="L57">    }</span>
-    
-    
+<span class="nc" id="L90">        this.grille = grille;</span>
+<span class="nc" id="L91">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
