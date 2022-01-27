@@ -14,18 +14,20 @@ public class Main {
     public static void main(String[] args){
         Plateau grille = new Plateau();
         
+        System.out.println("\n[INFO] Bienvenue dans Puissance 4 !\n");
+        
         Scanner scanner; 
-        System.out.println("\nJOUEUR 1\n");
+        System.out.println("Nom du Joueur 1 :\n");
         Joueur joueur1 = new Joueur(true);
         scanner = new Scanner(System.in);
-        System.out.println("[ENTRÉE]" + " Tapez votre pseudo :");
         String nomJoueur = scanner.next();
         joueur1.setNom(nomJoueur);
-        System.out.println("\nJOUEUR 2\n");
+        System.out.println("\n\nNom du Joueur 2:\n");
         Joueur joueur2 = new Joueur(false);
-        System.out.println("[ENTRÉE]" + " Tapez votre pseudo :");
         nomJoueur = scanner.next();
         joueur2.setNom(nomJoueur);
+        
+        System.out.println("\n\n Grille :");
         
         int n=0;
         boolean fini = false;
@@ -33,8 +35,8 @@ public class Main {
             
             if(n%2==0){
                 grille.affichePlateau();
-                System.out.println("à " + joueur1.getNom() + " de jouer! Tu es JAUNE");
-                System.out.println("tu as " + joueur1.getNbPion() + " pions à jouer");
+                System.out.println("[JOUER] C'est au tour de " + joueur1.getNom() + " de jouer! Tu es jaune !");
+                System.out.println("Tu as " + joueur1.getNbPion() + " pions à jouer.");
                 joueur1.jouer(grille);
                 n=1;
                 if (joueur1.verifierGagnant(grille)){
@@ -45,8 +47,8 @@ public class Main {
             }
             else {
                 grille.affichePlateau();
-                System.out.println("à " + joueur2.getNom() +  " de jouer! Tu es ROUGE");
-                System.out.println("tu as " + joueur2.getNbPion() + " pions à jouer");
+                System.out.println("[JOUER] C'est au tour de " + joueur2.getNom() +  " de jouer! Tu es rouge !");
+                System.out.println("Tu as " + joueur2.getNbPion() + " pions à jouer.");
                 joueur2.jouer(grille);
                 n=0;
                 if (joueur2.verifierGagnant(grille)){
