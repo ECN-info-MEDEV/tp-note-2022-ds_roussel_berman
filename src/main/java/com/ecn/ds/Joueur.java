@@ -14,13 +14,12 @@ public class Joueur {
     private int nbPion;
     private boolean isYellow;
     private String nom;
-    private Scanner scanner; 
-    private static String entree="[ENTRÉE]";
+    private Scanner scanner;
+    
     /**
      * constructeur du joueur
      * @param isYellow couleur de son pion
      */
-    
     public Joueur(boolean isYellow) {
         this.nbPion = 21;
         this.isYellow = isYellow;
@@ -36,7 +35,7 @@ public class Joueur {
 
         boolean colonneAccepted = false;
         while(!colonneAccepted){
-            System.out.println(entree  + " Dans quelle colonne souhaites-tu mettre ton pion ?  :");
+            System.out.println("Dans quelle colonne souhaites-tu mettre ton pion ?  :");
             colonne = scanner.nextInt();
             colonne = colonne - 1; // décalage de 1.
             colonneAccepted = plateau.insererPion(this, colonne); // si vrai, le pion a été placé

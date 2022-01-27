@@ -59,27 +59,27 @@ public class Plateau {
     }
     
     public void affichePlateau() {
-        StringBuilder bld = new StringBuilder();
+        StringBuilder bld;
         String line;
         
-        System.out.println("===================");
+        System.out.println(" C 1 2 3 4 5 6 7");
+        System.out.println("L ===============");
         for(int i = 0; i < 6; i++) {
             bld = new StringBuilder();
-            bld.append("|");
+            bld.append(i+1).append(" |");
             for(int j = 0; j < 7; j++) {
                 if(this.grille[i][j] == null)
                     bld.append(" |");
                 else if(this.grille[i][j].isYellow())
-                    bld.append("○|");
+                    bld.append(ANSI_YELLOW + "○" + ANSI_RESET + "|");
                 else {
-                    bld.append("•|");
+                    bld.append(ANSI_RED + "•" + ANSI_RESET + "|");
                 }
             }
-            bld.append("|");
             line = bld.toString();
             System.out.println(line);
         }
-        System.out.println("====================");
+        System.out.println("  ===============");
     }
 
     public Pion[][] getGrille() {
