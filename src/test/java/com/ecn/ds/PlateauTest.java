@@ -48,4 +48,17 @@ public class PlateauTest {
         instance.insererPion(instancejoueur, 0);
         assertEquals(instance.quelleLigne(0),4); // si vrai, alors un pion est bien tombé en ligne 5
     }
+   @Test
+    public void testAffichePlateau() {
+        Plateau instance = new Plateau();
+        instance.affichePlateau();
+    }
+    
+    @Test
+    public void testGetGrille() {
+        Plateau instance = new Plateau();
+        instance.getGrille()[0][0] = new Pion(true);
+        assertTrue(instance.getGrille()[0][0].isYellow());
+    }
+    
 }
