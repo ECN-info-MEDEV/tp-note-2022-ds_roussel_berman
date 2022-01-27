@@ -38,7 +38,8 @@ public class PlateauTest {
     @Test
     public void testInserPion() {
         Plateau instance = new Plateau();
-        instance.insererPion(true, 0);
+        Joueur instancejoueur = new Joueur(true);
+        instance.insererPion(instancejoueur, 0);
         assertEquals(instance.quelleLigne(0),4);
         
     }
