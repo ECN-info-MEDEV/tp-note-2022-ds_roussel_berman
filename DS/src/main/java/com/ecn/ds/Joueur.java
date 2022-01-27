@@ -4,6 +4,8 @@
  */
 package com.ecn.ds;
 
+import java.util.Scanner;
+
 /**
  *
  * @author aberman
@@ -11,15 +13,31 @@ package com.ecn.ds;
 public class Joueur {
     private int nbPion;
     private boolean isYellow;
-    private boolean aGagne;
-    
+    private Scanner scanner; 
+    private static String entree="[ENTRÉE]";
+    /**
+     * constructeur du joueur
+     * @param isYellow couleur de son pion
+     */
     public Joueur(boolean isYellow) {
         this.nbPion = 21;
         this.isYellow = isYellow;
     }
-    
-    public void jouer() {
-        
+    /**
+     * Permet de faire jouer le joueur sur le plateau de jeu
+     * @param plateau plateau commun aux deux jours
+     */
+    public void jouer(Plateau plateau) {
+        scanner = new Scanner(System.in);
+
+        int colonne;
+
+        boolean colonneAccepted = false;
+        while(!colonneAccepted){
+            System.out.println(entree  + " Dans quelle colonne souhaites-tu mettre ton pion ?  :");
+            colonne = scanner.nextInt();
+            colonneAccepted = plateau.insererPion(isYellow, colonne); // si vrai, le pion a été placé
+        }
     }
     
      public boolean verifierGagnant(Plateau plateau) {
@@ -43,12 +61,6 @@ public class Joueur {
         this.isYellow = isYellow;
     }
 
-    public boolean isaGagne() {
-        return aGagne;
-    }
 
-    public void setaGagne(boolean aGagne) {
-        this.aGagne = aGagne;
-    }
     
 }
