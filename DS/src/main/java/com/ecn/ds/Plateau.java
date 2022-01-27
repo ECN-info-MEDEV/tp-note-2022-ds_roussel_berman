@@ -52,9 +52,11 @@ public class Plateau {
         return grille;
     }
 
+    public Pion[][] getGrille() {
+        return grille;
+    }
+
     public void setGrille(Pion[][] grille) {
         this.grille = grille;
     }
-    
-    
 }
