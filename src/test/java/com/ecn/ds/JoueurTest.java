@@ -29,7 +29,6 @@ public class JoueurTest {
     @Test
     public void testNbrPion() {
         Joueur instanceJoueur = new Joueur(true); // joueur est jaune
-        Plateau instancePlateau = new Plateau();
         assertEquals(instanceJoueur.getNbPion(), 21);   
     }
     @Test
