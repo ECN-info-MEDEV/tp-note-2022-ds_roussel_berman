@@ -9,15 +9,39 @@ package com.ecn.ds;
  * @author aberman
  */
 public class Plateau {
-    private Pion[][] plateau;
+    private Pion[][] grille;
     
     public Plateau() {
-        this.plateau = new Pion[6][7];
+        this.grille = new Pion[6][7];
     }
-    
+    /**
+     * Permet de savoir à quelle ligne tombe le pion
+     * @param colonne colonne demanée
+     * @return 
+     */
+    private int quelleLigne(int colonne){
+        int ligne = 0;
+        while( (ligne < 6) && (this.grille[ligne][colonne] == null)){
+            ligne += 1;
+        }
+        return ligne;
+    }
+    /**
+     * Permet d'insérer le pion s'il est possible de le faire. si c'est impossible, la fonction retourne false
+     * @param isYellow couleur du pion
+     * @param colonne colonne demandée
+     * @return 
+     */
     public boolean insererPion(boolean isYellow, int colonne) {
-        
-        return true;
+        boolean res = true;
+        if (this.grille[0][colonne] != null){
+            res = false; // la colonne est déjà pleine
+        }
+        else{
+            int ligne = quelleLigne(colonne);
+            this.grille[ligne][colonne] = new Pion(isYellow);
+        }
+        return res;
     }
     
     public void afficherPlateau() {
