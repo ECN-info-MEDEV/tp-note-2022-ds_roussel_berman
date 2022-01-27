@@ -58,7 +58,7 @@ public class Plateau {
     }
     
     public void affichePlateau() {
-        StringBuilder bld = new StringBuilder();
+        StringBuilder bld;
         String line;
         
         System.out.println(" C 1 2 3 4 5 6 7");
