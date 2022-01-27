@@ -11,7 +11,6 @@ package com.ecn.ds;
 public class Joueur {
     private int nbPion;
     private boolean isYellow;
-    private boolean aGagne;
     
     public Joueur(boolean isYellow) {
         this.nbPion = 21;
@@ -22,9 +21,89 @@ public class Joueur {
         
     }
     
-     public boolean verifierGagnant(Plateau plateau) {
+    /**
+     * Vérifie si le Puissance 4 est gagné à partir d'un objet de type Plateau
+     * @param plateau
+     * @return true s'il y a un gagnant, false sinon
+     */
+    public boolean verifierGagnant(Plateau plateau) {
+        Pion[][] grille;
+        grille = plateau.getGrille();
         
-        return true;
+        // Vérifie si une série de 4 pions de la même couleur sont alignés horizontalement
+        for (int i = 0; i < 6; i++) {
+            int count = 1;
+            boolean color = grille[i][0].isYellow();
+            for (int j = 1; j < 7; j++) {
+                if(color == grille[i][j].isYellow())
+                    count += 1;
+                else {
+                    count = 0;
+                    color = grille[i][j].isYellow();
+                }
+                
+                if(count == 4)
+                    return (this.isYellow == color);
+            }
+        }
+        
+        // Vérifie si une série de 4 pions de la même couleur sont alignés verticalement
+        for (int j = 0; j < 7; j++) {
+            int count = 1;
+            boolean color = grille[0][j].isYellow();
+            for (var i = 1; i < 6; i++) {
+                if(color == grille[i][j].isYellow())
+                    count += 1;
+                else {
+                    count = 0;
+                    color = grille[i][j].isYellow();
+                }
+                
+                if(count == 4)
+                    return (this.isYellow == color);
+            }
+        }
+        
+        // Vérifie si une série de 4 pions de la même couleur sont alignés diagonalement
+        for(int i = 3; i < 6; i++) {
+            int j = 0;
+            int count = 1;
+            boolean color = grille[i][j].isYellow();
+            for(var k = i; k >= 0; k--) {
+                if(color == grille[k][j].isYellow())
+                    count += 1;
+                else {
+                    count = 0;
+                    color = grille[k][j].isYellow();
+                }
+                
+                if(count == 4)
+                    return (this.isYellow == color);
+                
+                j++;
+            }
+            
+        }
+        
+        for(int i = 2; i >= 0; i--) {
+            int j = 6;
+            int count = 1;
+            boolean color = grille[i][j].isYellow();
+            for(var k = i; k < 6; k++) {
+                if(color == grille[k][j].isYellow())
+                    count += 1;
+                else {
+                    count = 0;
+                    color = grille[k][j].isYellow();
+                }
+                
+                if(count == 4)
+                    return (this.isYellow == color);
+                j--;
+            }
+        }
+        
+        return false;
     }
 
     public int getNbPion() {
@@ -41,14 +120,6 @@ public class Joueur {
 
     public void setIsYellow(boolean isYellow) {
         this.isYellow = isYellow;
-    }
-
-    public boolean isaGagne() {
-        return aGagne;
-    }
-
-    public void setaGagne(boolean aGagne) {
-        this.aGagne = aGagne;
     }
     
 }

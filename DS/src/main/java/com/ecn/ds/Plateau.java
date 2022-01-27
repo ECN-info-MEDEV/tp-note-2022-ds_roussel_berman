@@ -9,10 +9,10 @@ package com.ecn.ds;
  * @author aberman
  */
 public class Plateau {
-    private Pion[][] plateau;
+    private Pion[][] grille;
     
     public Plateau() {
-        this.plateau = new Pion[6][7];
+        this.grille = new Pion[6][7];
     }
     
     public boolean insererPion(boolean isYellow, int colonne) {
@@ -22,5 +22,13 @@ public class Plateau {
     
     public void afficherPlateau() {
         
+    }
+
+    public Pion[][] getGrille() {
+        return grille;
+    }
+
+    public void setGrille(Pion[][] grille) {
+        this.grille = grille;
     }
 }
