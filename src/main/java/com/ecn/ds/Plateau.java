@@ -61,23 +61,24 @@ public class Plateau {
         StringBuilder bld = new StringBuilder();
         String line;
         
-        System.out.println("==========================");
+        System.out.println("===================");
         for(int i = 0; i < 6; i++) {
-            bld.append("| ");
-            for(int j = 0; j < 6; j++) {
+            bld = new StringBuilder();
+            bld.append("|");
+            for(int j = 0; j < 7; j++) {
                 if(this.grille[i][j] == null)
-                    bld.append("  ");
+                    bld.append(" |");
                 else if(this.grille[i][j].isYellow())
-                    bld.append("○ ");
+                    bld.append("○|");
                 else {
-                    bld.append("• ");
+                    bld.append("•|");
                 }
             }
             bld.append("|");
             line = bld.toString();
             System.out.println(line);
         }
-        System.out.println("==========================");
+        System.out.println("====================");
     }
 
     public Pion[][] getGrille() {
