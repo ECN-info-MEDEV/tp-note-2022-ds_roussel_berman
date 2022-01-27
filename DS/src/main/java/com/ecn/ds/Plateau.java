@@ -20,10 +20,12 @@ public class Plateau {
      * @return 
      */
     public int quelleLigne(int colonne){
-        int ligne = 0;
-        while( (ligne < 5) && (this.grille[ligne][colonne] == null)){
-            ligne += 1;
+        int ligne = 5;
+        
+        while(this.grille[ligne][colonne] != null){
+            ligne = ligne - 1;
         }
+        
         return ligne;
     }
     /**
