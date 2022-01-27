@@ -14,7 +14,7 @@
     <property name="sonar.login" value="f1723cd81ae2e2249cd5e8d393ea6e3e729a751d" />
     <property name="sonar.projectName" value="DS" />
     <property name="sonar.projectVersion" value="1.0" />
-    <property name="sonar.sources" value="src" />
+    <property name="sonar.sources" value="src/main" />
     <property name="sonar.java.binaries" value="build/main" />
     <property name="sonar.java.libraries" value="lib/*.jar" />
     

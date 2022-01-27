@@ -16,16 +16,6 @@ import static org.junit.Assert.*;
  */
 public class PionTest {
     
-    public PionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
 
     @Test
     public void testIsYellow() {
