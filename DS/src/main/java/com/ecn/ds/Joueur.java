@@ -141,10 +141,5 @@ public class Joueur {
     public void setIsYellow(boolean isYellow) {
         this.isYellow = isYellow;
     }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> joueur
     
 }
