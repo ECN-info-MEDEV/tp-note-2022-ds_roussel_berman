@@ -27,7 +27,7 @@ public class Main {
         nomJoueur = scanner.next();
         joueur2.setNom(nomJoueur);
         
-        System.out.println("\n\n Grille :\n");
+        System.out.println("\n\n Grille :");
         
         int n=0;
         boolean fini = false;
