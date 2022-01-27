@@ -15,13 +15,13 @@ public class Plateau {
         this.grille = new Pion[6][7];
     }
     /**
-     * Permet de savoir à quelle ligne tombe le pion
+     * Permet de savoir à quelle ligne tombe le pion. Mis en public pour pouvoir faire les tests
      * @param colonne colonne demanée
      * @return 
      */
-    private int quelleLigne(int colonne){
+    public int quelleLigne(int colonne){
         int ligne = 0;
-        while( (ligne < 6) && (this.grille[ligne][colonne] == null)){
+        while( (ligne < 5) && (this.grille[ligne][colonne] == null)){
             ligne += 1;
         }
         return ligne;
@@ -44,7 +44,17 @@ public class Plateau {
         return res;
     }
     
-    public void afficherPlateau() {
-        
+    public void affichePlateau() {
+        System.out.println("affichage du plateau à faire");
     }
+
+    public Pion[][] getGrille() {
+        return grille;
+    }
+
+    public void setGrille(Pion[][] grille) {
+        this.grille = grille;
+    }
+    
+    
 }
