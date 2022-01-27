@@ -34,21 +34,29 @@ public class Main {
             if(n%2==0){
                 grille.affichePlateau();
                 System.out.println("à " + joueur1.getNom() + " de jouer! Tu es JAUNE");
+                System.out.println("tu as " + joueur1.getNbPion() + " pions à jouer");
                 joueur1.jouer(grille);
                 n=1;
                 if (joueur1.verifierGagnant(grille)){
                     fini = joueur1.verifierGagnant(grille);
-                    System.out.println("animation joueur 1 a fini");
+                    grille.affichePlateau();
+                    System.out.println("[FIN DE LA PARTIE] Bravo " + joueur1.getNom() + ", tu as gagné ! ");
                 }
             }
             else{
                 grille.affichePlateau();
                 System.out.println("à " + joueur2.getNom() +  " de jouer! Tu es ROUGE");
+                System.out.println("tu as " + joueur2.getNbPion() + " pions à jouer");
                 joueur2.jouer(grille);
-                n=1;
+                n=0;
                 if (joueur2.verifierGagnant(grille)){
                     fini = joueur2.verifierGagnant(grille);
-                    System.out.println("animation joueur 2 a fini");
+                    System.out.println("[FIN DE LA PARTIE] Bravo " + joueur1.getNom() + ", tu as gagné ! ");
+                }
+                else{
+                    if(joueur2.getNbPion() == 0){
+                        System.out.println("[FIN DE LA PARTIE] Vous n'avez plus de pions ... ");
+                    }
                 }
             }
         }
