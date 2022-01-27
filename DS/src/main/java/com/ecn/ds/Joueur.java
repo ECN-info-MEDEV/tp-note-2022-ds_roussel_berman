@@ -53,8 +53,12 @@ public class Joueur {
         // Vérifie si une série de 4 pions de la même couleur sont alignés horizontalement
         for (int i = 0; i < 6; i++) {
             int count = 1;
+            if(grille[i][0] == null)
+                continue;
             boolean color = grille[i][0].isYellow();
             for (int j = 1; j < 7; j++) {
+                if(grille[i][j] == null)
+                    continue;
                 if(color == grille[i][j].isYellow())
                     count += 1;
                 else {
@@ -70,8 +74,12 @@ public class Joueur {
         // Vérifie si une série de 4 pions de la même couleur sont alignés verticalement
         for (int j = 0; j < 7; j++) {
             int count = 1;
+            if(grille[0][j] == null)
+                continue;
             boolean color = grille[0][j].isYellow();
             for (var i = 1; i < 6; i++) {
+                if(grille[i][j] == null)
+                    continue;
                 if(color == grille[i][j].isYellow())
                     count += 1;
                 else {
@@ -88,8 +96,12 @@ public class Joueur {
         for(int i = 3; i < 6; i++) {
             int j = 0;
             int count = 1;
+            if(grille[i][j] == null)
+                continue;
             boolean color = grille[i][j].isYellow();
             for(var k = i; k >= 0; k--) {
+                if(grille[k][j] == null)
+                    continue;
                 if(color == grille[k][j].isYellow())
                     count += 1;
                 else {
@@ -108,8 +120,12 @@ public class Joueur {
         for(int i = 2; i >= 0; i--) {
             int j = 6;
             int count = 1;
+            if(grille[i][j] == null)
+                continue;
             boolean color = grille[i][j].isYellow();
             for(var k = i; k < 6; k++) {
+                if(grille[k][j] == null)
+                    continue;
                 if(color == grille[k][j].isYellow())
                     count += 1;
                 else {
