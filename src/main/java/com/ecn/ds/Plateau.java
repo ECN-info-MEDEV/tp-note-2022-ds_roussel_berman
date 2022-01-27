@@ -45,14 +45,15 @@ public class Plateau {
      * @param colonne colonne demandée
      * @return 
      */
-    public boolean insererPion(boolean isYellow, int colonne) {
+    public boolean insererPion(Joueur joueur, int colonne) {
         boolean res = true;
         if (this.grille[0][colonne] != null){
             res = false; // la colonne est déjà pleine
         }
         else{
             int ligne = quelleLigne(colonne);
-            this.grille[ligne][colonne] = new Pion(isYellow);
+            this.grille[ligne][colonne] = new Pion(joueur.isIsYellow());
+            joueur.setNbPion(joueur.getNbPion() - 1);
         }
         return res;
     }

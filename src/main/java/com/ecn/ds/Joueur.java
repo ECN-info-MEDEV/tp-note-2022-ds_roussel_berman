@@ -38,7 +38,8 @@ public class Joueur {
         while(!colonneAccepted){
             System.out.println(entree  + " Dans quelle colonne souhaites-tu mettre ton pion ?  :");
             colonne = scanner.nextInt();
-            colonneAccepted = plateau.insererPion(isYellow, colonne); // si vrai, le pion a été placé
+            colonne = colonne - 1; // décalage de 1.
+            colonneAccepted = plateau.insererPion(this, colonne); // si vrai, le pion a été placé
         }
     }
     
