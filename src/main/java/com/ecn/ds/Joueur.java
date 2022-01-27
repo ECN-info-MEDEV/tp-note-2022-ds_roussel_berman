@@ -25,7 +25,7 @@ public class Joueur {
         this.isYellow = isYellow;
     }
     /**
-     * Permet de faire jouer le joueur sur le plateau de jeu
+     * Cette méthode permet au joueur de choisir une colonne. On appelle la méthode insererPion de plateau.
      * @param plateau plateau commun aux deux jours
      */
     public void jouer(Plateau plateau) {
@@ -46,7 +46,7 @@ public class Joueur {
     }
     
     /**
-     * Vérifie si le Puissance 4 est gagné à partir d'un objet de type Plateau
+     * Cette méthode vérifie si le Puissance 4 est gagné
      * @param plateau
      * @return true s'il y a un gagnant, false sinon
      */

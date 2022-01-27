@@ -30,17 +30,22 @@ public class PlateauTest {
     @Test
     public void testQuelleLigne() {
         Plateau instance = new Plateau();
-        assertEquals(instance.quelleLigne(0), 5);
-        
+        assertEquals(instance.quelleLigne(0), 5);   
+    }
+    
+    @Test
+    public void testInsertPion() {
+        Plateau instance = new Plateau();
+        Joueur instancejoueur = new Joueur(true);
+        assertTrue(instance.insererPion(instancejoueur, 0));
         
     }
     
     @Test
-    public void testInserPion() {
+    public void testChangementPLateau() {
         Plateau instance = new Plateau();
         Joueur instancejoueur = new Joueur(true);
         instance.insererPion(instancejoueur, 0);
-        assertEquals(instance.quelleLigne(0),4);
-        
+        assertEquals(instance.quelleLigne(0),4); // si vrai, alors un pion est bien tombé en ligne 5
     }
 }
