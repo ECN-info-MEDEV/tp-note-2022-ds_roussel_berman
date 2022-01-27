@@ -26,7 +26,7 @@ public class Plateau {
         this.grille = new Pion[6][7];
     }
     /**
-     * Permet de savoir à quelle ligne tombe le pion. Mis en public pour pouvoir faire les tests
+     * Cette méthode permet de savoir à quelle ligne tombe le pion. La méthode est mise en public afin de pouvoir la tester.
      * @param colonne colonne demanée
      * @return 
      */
@@ -40,7 +40,7 @@ public class Plateau {
         return ligne;
     }
     /**
-     * Permet d'insérer le pion s'il est possible de le faire. si c'est impossible, la fonction retourne false
+     * Cette méthode permet d'insérer le pion , s'il est possible de le faire. si c'est impossible, la fonction retourne false et le joueur doit renseigner un nouveau colonne.
      * @param isYellow couleur du pion
      * @param colonne colonne demandée
      * @return 

@@ -34,9 +34,6 @@ public class PionTest {
 
     }
 
-    /**
-     * Test of setWhite method, of class Pion.
-     */
     @Test
     public void testsetYellow() {
         Pion instance = new Pion(true);
