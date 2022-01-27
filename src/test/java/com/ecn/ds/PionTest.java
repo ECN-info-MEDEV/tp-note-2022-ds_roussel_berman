@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author alanroussel
  */
-public class PlateauTest {
+public class PionTest {
     
-    public PlateauTest() {
+    public PionTest() {
     }
     
     @BeforeClass
@@ -26,20 +26,22 @@ public class PlateauTest {
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Test
-    public void testQuelleLigne() {
-        Plateau instance = new Plateau();
-        assertEquals(instance.quelleLigne(0), 5);
-        
-        
+    public void testIsYellow() {
+        Pion instance = new Pion(true);
+        assertEquals(instance.isYellow(), true);
+
     }
-    
+
+    /**
+     * Test of setWhite method, of class Pion.
+     */
     @Test
-    public void testInserPion() {
-        Plateau instance = new Plateau();
-        instance.insererPion(true, 0);
-        assertEquals(instance.quelleLigne(0),4);
-        
+    public void testsetYellow() {
+        Pion instance = new Pion(true);
+        instance.setYellow(false);
+        assertEquals(instance.isYellow(), false);
+
     }
 }
