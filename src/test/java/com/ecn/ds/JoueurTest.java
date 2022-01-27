@@ -16,16 +16,7 @@ import static org.junit.Assert.*;
  */
 public class JoueurTest {
     
-    public JoueurTest() {
-    }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     @Test
     public void testNbrPion() {
         Joueur instanceJoueur = new Joueur(true); // joueur est jaune
