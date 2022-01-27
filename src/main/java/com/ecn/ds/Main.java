@@ -29,7 +29,7 @@ public class Main {
         
         int n=0;
         boolean fini = false;
-        while(!fini){
+        while(!fini) {
             
             if(n%2==0){
                 grille.affichePlateau();
@@ -43,7 +43,7 @@ public class Main {
                     System.out.println("[FIN DE LA PARTIE] Bravo " + joueur1.getNom() + ", tu as gagné ! ");
                 }
             }
-            else{
+            else {
                 grille.affichePlateau();
                 System.out.println("à " + joueur2.getNom() +  " de jouer! Tu es ROUGE");
                 System.out.println("tu as " + joueur2.getNbPion() + " pions à jouer");
